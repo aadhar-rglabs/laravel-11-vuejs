@@ -73,9 +73,12 @@ class CompanyController extends Controller
      */
     public function formSubmit(Request $request)
     {
+        $request->validate([
+            'name' => 'required|max:255',
+            'file' => 'required',
+        ]);
         $fileName = time() . '.' . $request->file->getClientOriginalExtension();
         $request->file->move(public_path('upload'), $fileName);
-
         return response()->json(['success' => 'You have successfully upload file.']);
     }
 }

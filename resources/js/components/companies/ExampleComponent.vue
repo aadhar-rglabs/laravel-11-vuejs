@@ -8,10 +8,10 @@
                     </div>
 
                     <div class="card-body">
-                        <div v-if="success != ''" class="text-blue-500 text-md font-bold mb-2">
-                            {{ success }}
+                        <div v-if="message != ''" class="text-blue-500 text-md font-bold mb-2">
+                            {{ message }}
                         </div>
-                        <form @submit="formSubmit" method="POST" enctype="multipart/form-data">
+                        <form @submit="formSubmit" method="POST" id="file-form" enctype="multipart/form-data">
                             <input type="hidden" name="_token" id="token" value="{{ csrf_token() }}">
                             <div class="mb-4">
                                 <label class="block text-gray-700 text-sm font-bold mb-2" for="username">
@@ -19,7 +19,7 @@
                                 </label>
                                 <input
                                     class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                                    id="name" type="text" placeholder="Name" v-model="name" />
+                                    id="name" name="name" type="text" placeholder="Name" v-model="name" />
                             </div>
 
                             <div class="flex items-center justify-center w-full mb-4">
@@ -40,7 +40,6 @@
                                     <input id="file_input" type="file" class="hidden" v-on:change="onFileChange" />
                                 </label>
                             </div>
-
 
                             <button type="submit"
                                 class="inline-flex items-center px-4 py-2 text-xs font-semibold tracking-widest text-white uppercase transition duration-150 ease-in-out bg-gray-800 border border-transparent rounded-md ring-gray-300 hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring disabled:opacity-25">
@@ -63,7 +62,7 @@ export default {
         return {
             name: '',
             file: '',
-            success: ''
+            message: ''
         };
     },
     methods: {
@@ -74,20 +73,28 @@ export default {
         formSubmit(e) {
             e.preventDefault();
             let currentObj = this;
-
             const config = {
                 headers: { 'content-type': 'multipart/form-data' }
             }
-
             let formData = new FormData();
+            const name = formData.get('name');
             formData.append('file', this.file);
-            // console.log(formData);
+            formData.append('name', currentObj.name);
             axios.post('/upload/file', formData, config)
                 .then(function (response) {
-                    currentObj.success = response.data.success;
+                    // console.table(response);
+                    if (currentObj.message) {
+                        currentObj.message = response.data.success;
+                    }
                 })
                 .catch(function (error) {
-                    currentObj.output = error;
+                    // console.log(error);
+                    if (error.response.status === 422) {
+                        for (const key in error.response.data.errors) {
+                            currentObj.message = " " + error.response.data.errors[key]
+                        }
+                    }
+                    currentObj.output = error.response.data.message;
                 });
         }
     }
