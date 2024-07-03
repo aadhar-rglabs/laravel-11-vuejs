@@ -1,29 +1,35 @@
-import { createRouter, createWebHistory } from 'vue-router'
- 
-import CompaniesIndex from '@/components/companies/CompaniesIndex.vue'
-import CompaniesCreate from '@/components/companies/CompaniesCreate.vue'
-import CompaniesEdit from '@/components/companies/CompaniesEdit.vue'
- 
+import { createRouter, createWebHistory } from "vue-router";
+
+import CompaniesIndex from "@/components/companies/CompaniesIndex.vue";
+import CompaniesCreate from "@/components/companies/CompaniesCreate.vue";
+import CompaniesEdit from "@/components/companies/CompaniesEdit.vue";
+import ExampleComponent from "@/components/companies/ExampleComponent.vue";
+
 const routes = [
     {
-        path: '/dashboard',
-        name: 'companies.index',
-        component: CompaniesIndex
+        path: "/dashboard",
+        name: "companies.index",
+        component: CompaniesIndex,
     },
     {
-        path: '/companies/create',
-        name: 'companies.create',
-        component: CompaniesCreate
+        path: "/companies/create",
+        name: "companies.create",
+        component: CompaniesCreate,
     },
-    { 
-        path: '/companies/:id/edit',
-        name: 'companies.edit',
+    {
+        path: "/companies/:id/edit",
+        name: "companies.edit",
         component: CompaniesEdit,
-        props: true
-    }, 
+        props: true,
+    },
+    {
+        path: "/upload/file",
+        name: "upload.file",
+        component: ExampleComponent,
+    },
 ];
- 
+
 export default createRouter({
     history: createWebHistory(),
-    routes
-})
+    routes,
+});

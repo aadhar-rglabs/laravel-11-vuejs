@@ -3,6 +3,9 @@
         <div class="h-10 px-4 font-semibold rounded-md border border-slate-200 text-slate-900 py-1">
             <router-link :to="{ name: 'companies.create' }" class="text-sm font-medium">Create company</router-link>
         </div>
+        <div class="h-10 mx-4 px-4 font-semibold rounded-md border border-slate-200 text-slate-900 py-1">
+            <router-link :to="{ name: 'upload.file' }" class="text-sm font-medium">Upload File</router-link>
+        </div>
     </div>
     <div class="min-w-full overflow-hidden overflow-x-auto align-middle sm:rounded-md">
         <table class="min-w-full border divide-y divide-gray-200">

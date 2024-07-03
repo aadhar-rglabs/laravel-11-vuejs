@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\CompanyController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -23,3 +24,5 @@ require __DIR__.'/auth.php';
 Route::view('/{any}', 'dashboard')
     ->middleware(['auth'])
     ->where('any', '.*');
+
+Route::post('upload/file', [CompanyController::class, 'formSubmit']);
