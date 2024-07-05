@@ -6,7 +6,7 @@
             </p>
         </div>
     </div>
- 
+
     <form class="space-y-6" @submit.prevent="saveCompany">
         <div class="space-y-4 rounded-md shadow-sm">
             <div>
@@ -35,7 +35,7 @@
                             v-model="form.address">
                 </div>
             </div>
- 
+
             <div>
                 <label for="website" class="block text-sm font-medium text-gray-700">Website</label>
                 <div class="mt-1">
@@ -47,7 +47,7 @@
         </div>
  
         <button type="submit"
-                class="inline-flex items-center px-4 py-2 text-xs font-semibold tracking-widest text-white uppercase transition duration-150 ease-in-out bg-gray-800 border border-transparent rounded-md ring-gray-300 hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring disabled:opacity-25">
+            class="inline-flex items-center px-4 py-2 text-xs font-semibold tracking-widest text-white uppercase transition duration-150 ease-in-out bg-gray-800 border border-transparent rounded-md ring-gray-300 hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring disabled:opacity-25">
             Create
         </button>
     </form>
@@ -56,7 +56,7 @@
 <script setup>
 import useCompanies from '../../composables/companies.js'
 import { reactive } from 'vue'
- 
+
 const form = reactive({
     name: '',
     email: '',
@@ -65,7 +65,6 @@ const form = reactive({
 })
  
 const { errors, storeCompany } = useCompanies()
- 
 const saveCompany = async () => {
     await storeCompany({ ...form })
 }

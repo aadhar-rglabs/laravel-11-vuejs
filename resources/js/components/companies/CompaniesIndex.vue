@@ -3,7 +3,7 @@
         <div class="h-10 px-4 font-semibold rounded-md border border-slate-200 text-slate-900 py-1">
             <router-link :to="{ name: 'companies.create' }" class="text-sm font-medium">Create company</router-link>
         </div>
-        <div class="h-10 mx-4 px-4 font-semibold rounded-md border border-slate-200 text-slate-900 py-1">
+        <div class="h-10 ml-2 px-4 font-semibold rounded-md border border-slate-200 text-slate-900 py-1">
             <router-link :to="{ name: 'upload.file' }" class="text-sm font-medium">Upload File</router-link>
         </div>
     </div>
@@ -27,6 +27,10 @@
                     <span
                         class="text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase">Website</span>
                 </th>
+                <th class="px-6 py-3 bg-gray-50">
+                    <span
+                        class="text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase">Action</span>
+                </th>
             </tr>
             </thead>
  
@@ -47,9 +51,9 @@
                     </td>
                     <td class="px-6 py-4 text-sm leading-5 text-center text-gray-900 whitespace-no-wrap">
                         <router-link :to="{ name: 'companies.edit', params: { id: item.id } }"
-                            class="px-4 py-2 rounded-md text-gray border border-transparent bg-cyan-500 hover:bg-cyan-600 cursor-pointer shadow-md">Edit</router-link>
+                            class="px-4 py-2 rounded-md text-gray border border-gray-800 bg-cyan-500 hover:bg-cyan-600 cursor-pointer shadow-sm">Edit</router-link>
                         <button @click="deleteCompany(item.id)"
-                                class="inline-flex items-center px-4 py-2 text-xs font-semibold tracking-widest text-white uppercase transition duration-150 ease-in-out bg-gray-800 border border-transparent rounded-md hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring ring-gray-300 disabled:opacity-25 shadow-md">
+                                class="inline-flex items-center ml-2 px-4 py-2 text-xs font-semibold tracking-widest text-white uppercase transition duration-150 ease-in-out bg-gray-800 border border-transparent rounded-md hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring ring-gray-300 disabled:opacity-25 shadow-md">
                                 Delete</button>
                     </td>
                 </tr>
@@ -64,8 +68,8 @@ import useCompanies from '@/composables/companies'
 import { onMounted } from 'vue';
 const { companies, getCompanies, destroyCompany  } = useCompanies()
 const deleteCompany = async (id) => {
-    if (!window.confirm('You sure?')) {
-        return
+    if (!window.confirm('Are you sure??')) {
+        return false;
     }
     await destroyCompany(id)
     await getCompanies()
