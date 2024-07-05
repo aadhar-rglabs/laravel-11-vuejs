@@ -3,11 +3,13 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Jobs\NewUserWelcomeMail;
 use App\Models\Company;
 use Illuminate\Http\Request;
 use App\Http\Requests\CompanyRequest;
 use App\Http\Resources\CompanyResource;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Auth;
 
 class CompanyController extends Controller
 {
@@ -31,6 +33,7 @@ class CompanyController extends Controller
             'website' => 'required',
         ]);
         $company = Company::create($validator->validated());
+        dispatch(new NewUserWelcomeMail($company));
         return new CompanyResource($company);
     }
 
@@ -72,6 +75,18 @@ class CompanyController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function formSubmit(Request $request)
+    {
+        $request->validate([
+            'name' => 'required|max:255',
+            'file' => 'required',
+        ]);
+        $fileName = time() . '.' . $request->file->getClientOriginalExtension();
+        $request->file->move(public_path('upload'), $fileName);
+        return response()->json(['success' => 'You have successfully upload file.']);
+    }
+
+
+    public function testComp(Request $request)
     {
         $request->validate([
             'name' => 'required|max:255',

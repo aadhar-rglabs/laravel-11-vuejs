@@ -38,6 +38,9 @@
                                             800x400px)</p>
                                     </div>
                                     <input id="file_input" type="file" class="hidden" v-on:change="onFileChange" />
+                                    <br>
+                                    <progress max="100" :value.prop="uploadPercentage"></progress>
+                                    <br>
                                 </label>
                             </div>
 
@@ -62,6 +65,7 @@ export default {
         return {
             name: '',
             file: '',
+            uploadPercentage: 0,
             message: ''
         };
     },
@@ -69,12 +73,16 @@ export default {
         onFileChange(e) {
             console.log(e.target.files[0]);
             this.file = e.target.files[0];
+            this.file = this.$refs.file.files[0];
         },
         formSubmit(e) {
             e.preventDefault();
             let currentObj = this;
             const config = {
-                headers: { 'content-type': 'multipart/form-data' }
+                headers: { 'content-type': 'multipart/form-data' },
+                onUploadProgress: function (progressEvent) {
+                    this.uploadPercentage = parseInt(Math.round((progressEvent.loaded / progressEvent.total) * 100));
+                }.bind(this)
             }
             let formData = new FormData();
             const name = formData.get('name');
@@ -88,7 +96,7 @@ export default {
                     }
                 })
                 .catch(function (error) {
-                    // console.log(error);
+                    console.log(error);
                     if (error.response.status === 422) {
                         for (const key in error.response.data.errors) {
                             currentObj.message = " " + error.response.data.errors[key]

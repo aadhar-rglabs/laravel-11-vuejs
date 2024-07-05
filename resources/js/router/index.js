@@ -4,6 +4,7 @@ import CompaniesIndex from "@/components/companies/CompaniesIndex.vue";
 import CompaniesCreate from "@/components/companies/CompaniesCreate.vue";
 import CompaniesEdit from "@/components/companies/CompaniesEdit.vue";
 import ExampleComponent from "@/components/companies/ExampleComponent.vue";
+import TestComponent from "@/components/companies/TestComponent.vue";
 
 const routes = [
     {
@@ -26,6 +27,11 @@ const routes = [
         path: "/upload/file",
         name: "upload.file",
         component: ExampleComponent,
+    },
+    {
+        path: "/test/comp",
+        name: "test.comp",
+        component: TestComponent,
     },
 ];
 

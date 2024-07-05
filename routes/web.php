@@ -26,3 +26,4 @@ Route::view('/{any}', 'dashboard')
     ->where('any', '.*');
 
 Route::post('upload/file', [CompanyController::class, 'formSubmit']);
+Route::post('test/comp', [CompanyController::class, 'testComp']);
