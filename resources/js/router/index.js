@@ -5,13 +5,19 @@ import CompaniesCreate from "@/components/companies/CompaniesCreate.vue";
 import CompaniesEdit from "@/components/companies/CompaniesEdit.vue";
 import ExampleComponent from "@/components/companies/ExampleComponent.vue";
 import TestComponent from "@/components/companies/TestComponent.vue";
+import Dashboard from "../components/pages/Dashboard.vue";
 
 const routes = [
     {
         path: "/dashboard",
         name: "companies.index",
-        component: CompaniesIndex,
+        component: Dashboard,
     },
+    // {
+    //     path: "/dashboard",
+    //     name: "companies.index",
+    //     component: CompaniesIndex,
+    // },
     {
         path: "/companies/create",
         name: "companies.create",

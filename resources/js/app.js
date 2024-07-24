@@ -1,4 +1,7 @@
 import './bootstrap';
+import '../../public/assets/css/adminlte.min.css'
+import '../../public/assets/plugins/icheck-bootstrap/icheck-bootstrap.min.css'
+import '../../public/assets/plugins/fontawesome-free/css/all.min.css'
 
 import Alpine from 'alpinejs';
 
@@ -16,3 +19,4 @@ createApp({
         CompaniesIndex
     }
 }).use(router).mount('#app')
+
