@@ -28,6 +28,11 @@ const routes = [
         name: "upload.file",
         component: ExampleComponent,
     },
+    // {
+    //     path: "/export/file",
+    //     name: "export.file",
+    //     component: CompaniesIndex,
+    // },
     {
         path: "/test/comp",
         name: "test.comp",

@@ -52,6 +52,10 @@ export default function useCompanies() {
         await axios.delete(`/api/companies/${id}`)
     }
 
+    const exportFile = async () => {
+        let response = await axios.post('/export/file')
+        // companies.value = response.data.data
+    }
  
     return {
         errors,
@@ -61,6 +65,7 @@ export default function useCompanies() {
         getCompanies,
         storeCompany,
         updateCompany,
-        destroyCompany
+        destroyCompany,
+        exportFile,
     }
 }
