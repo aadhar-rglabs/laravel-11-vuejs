@@ -15,7 +15,7 @@ const routes = [
     },
     {
         path: "/companies",
-        name: "companies.index",
+        name: "companies.list",
         component: CompaniesIndex,
     },
     {

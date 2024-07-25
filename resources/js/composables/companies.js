@@ -23,7 +23,7 @@ export default function useCompanies() {
         errors.value = ''
         try {
             await axios.post('/api/companies', data)
-            await router.push({ name: 'companies.index' })
+            await router.push({ name: 'companies.list' })
         } catch (e) {
             if (e.response.status === 422) {
                 for (const key in e.response.data.errors) {
