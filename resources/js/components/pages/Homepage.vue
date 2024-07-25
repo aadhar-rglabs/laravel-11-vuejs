@@ -1488,3 +1488,22 @@
     </div>
     <!-- ./wrapper -->
 </template>
+
+
+<script>
+import Footer from '../../components/partials/Footer.vue'
+
+export default {
+ name: 'Dashboard',
+ components: {
+    Footer,
+ }
+}
+</script>
+
+<style>
+body {
+ margin: 0;
+ font-family: Arial, Helvetica, sans-serif;
+}
+</style>

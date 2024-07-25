@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\PostController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\CompanyController;
@@ -9,3 +10,5 @@ Route::get('/user', function (Request $request) {
 })->middleware('auth:sanctum');
 
 Route::apiResource('companies', CompanyController::class);
+
+Route::apiResource('posts', PostController::class);

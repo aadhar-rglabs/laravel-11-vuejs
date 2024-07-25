@@ -21,6 +21,9 @@
                     <x-nav-link :href="route('companies.list')">
                         {{ __('Companies') }}
                     </x-nav-link>
+                    <x-nav-link :href="route('posts.list')">
+                        {{ __('Posts') }}
+                    </x-nav-link>
                     <!-- Authentication -->
                     <form method="POST" action="{{ route('logout') }}">
                         @csrf
