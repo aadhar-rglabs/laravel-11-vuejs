@@ -10,14 +10,14 @@ import Dashboard from "../components/pages/Dashboard.vue";
 const routes = [
     {
         path: "/dashboard",
-        name: "companies.index",
+        name: "dashboard",
         component: Dashboard,
     },
-    // {
-    //     path: "/dashboard",
-    //     name: "companies.index",
-    //     component: CompaniesIndex,
-    // },
+    {
+        path: "/companies",
+        name: "companies.index",
+        component: CompaniesIndex,
+    },
     {
         path: "/companies/create",
         name: "companies.create",
