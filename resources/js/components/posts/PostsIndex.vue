@@ -44,7 +44,7 @@
                             {{ item.description }}
                         </td>
                         <td class="px-6 py-4 text-sm leading-5 text-gray-900 whitespace-no-wrap">
-                            <img :src="item.file" width="80" alt="">
+                            <img :src="item.file" width="80" :alt="item.title" />
                         </td>
                         <td class="px-6 py-4 text-sm leading-5 text-center text-gray-900 whitespace-no-wrap">
                             <router-link :to="{ name: 'posts.edit', params: { id: item.id } }"
